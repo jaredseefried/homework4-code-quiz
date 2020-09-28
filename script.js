@@ -1,15 +1,18 @@
-var h1Tag = document.querySelector("#mainH1");
-var para = document.querySelector("#mainPara")
-var startButton = document.querySelector("#startBtn")
+var hTag = document.querySelector("#mainH");
+var para = document.querySelector("#mainPara");
+var startButton = document.querySelector("#startBtn");
 
-function startQuiz(e){
+function startQuiz(){
     
 }
 
 function handleClick(e){
     e.preventDefault();
-    
-    console.log("click");
+    if( e.target.matches("button") ){
+    hTag.style.display = "none";
+    para.style.display = "none";
+    startButton.style.display = "none";
+    }
 }
 
 startButton.addEventListener("click", handleClick); 
