@@ -6,7 +6,7 @@ var timeRemain = document.querySelector("#timer");
 var timeLeft = 10;
 var myTimer
 
-var score;
+var score = 0;
 var index = 0;
 var questionsSection = document.querySelector("#questionSection");
 var choices = document.querySelector("choices");
@@ -35,7 +35,7 @@ function startQuiz(){
 
     currentQuestion.choices.forEach(function(choice, i) {
         console.log(choice, i);
-        var choicesEl = document.createElement("p");
+        var choicesEl = document.createElement("button");
         choicesEl.textContent = choice;
 
         questionsSection.appendChild(choicesEl)
