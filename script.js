@@ -4,22 +4,43 @@ var startButton = document.querySelector("#startBtn");
 var timeRemain = document.querySelector("#timer");
 
 var timeLeft = 10;
+var myTimer
+
+var score;
+var index = 0;
+var questionsSection = document.querySelector("#questionSection");
+var choices = document.querySelector("choices");
+
 
 function startTime(){
     
-    var myTimer = setInterval(function() {
-        timeRemain--;
+    myTimer = setInterval(function() {
+        timeLeft--;
+            timeRemain.textContent = timeLeft + " seconds remaining.";
             if(timeLeft === 0) {
-            clearInterval(myTimer);  
-            }
+            clearInterval(myTimer); 
+            } 
         }, 1000)
-    timeRemain.textContent = timeLeft + " seconds remaining.";
+    
     startQuiz();
 }
 
 function startQuiz(){
-    console.log("question #1")
-  }
+    // console.log(questions[index].title);
+    var currentQuestion = questions[index]; 
+    var titleEl = document.createElement("h3");
+    titleEl.textContent = currentQuestion.title;
+    questionsSection.append(titleEl);
+   // console.log(questions[index].choices);
+
+    currentQuestion.choices.forEach(function(choice, i) {
+        console.log(choice, i);
+        var choicesEl = document.createElement("p");
+        choicesEl.textContent = choice;
+
+        questionsSection.appendChild(choicesEl)
+    })
+}
   
     
 function handleClick(e){
