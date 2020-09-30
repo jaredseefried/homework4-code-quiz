@@ -39,7 +39,7 @@ function loadQuestion(){
     currentQuestion.choices.forEach(function(choice, i) {
     var choicesEl = document.createElement("button");
     choicesEl.setAttribute("class", "btn");
-    // choicesEl.textContent = choice;
+    choicesEl.textContent = choice;
     choicesEl.setAttribute("data-answer", currentQuestion.choices[i]);
 
 
@@ -47,24 +47,11 @@ function loadQuestion(){
     //if does, set attribute (data-correct) yes or no
     //when button is 
     choicesEl.textContent = currentQuestion.choices[i];
-  
+    console.log("checking");
     
     questionsSection.appendChild(choicesEl)
     console.log(choice, i);
     
-    
-    if (userAnswer){
-        var correct = questions[index].answer
-        console.log(correct)
-        var userAnswer = e.target.getAttribute("data-answer");
-        console.log(userAnswer);
-        index++;
-        if (userAnswer === correct){
-            console.log("correct Answer");
-        } else {
-            console.log("incorrect again!!!!")
-        }
-    }
     
     })
     
@@ -81,12 +68,12 @@ function startQuiz(e){
     } 
 
 function answerClick(e){
-    // e.preventDefault();
-    // if( e.target.matches("button") ){
-    //     console.log("Correct");
-    // } else {
-    //     console.log("incorrect");
-    // }
+    e.preventDefault();
+    if( e.target.matches("button") ){
+        console.log("Correct");
+    } else {
+        console.log("incorrect");
+    }
 }
 
 ulTag.addEventListener("click", answerClick);
