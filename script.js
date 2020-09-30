@@ -2,14 +2,16 @@ var hTag = document.querySelector("#mainH");
 var para = document.querySelector("#mainPara");
 var startButton = document.querySelector("#startBtn");
 var timeRemain = document.querySelector("#timer");
-
+var ulTag = document.getElementById("choices");
 var timeLeft = 10;
 var myTimer
 
 var score = 0;
 var index = 0;
+
 var questionsSection = document.querySelector("#questionSection");
 var choices = document.querySelector("choices");
+
 
 
 function startTime(){
@@ -22,38 +24,71 @@ function startTime(){
             } 
         }, 1000)
     
-    startQuiz();
+    loadQuestion();
 }
 
-function startQuiz(){
-    // console.log(questions[index].title);
+
+function loadQuestion(){
+    
     var currentQuestion = questions[index]; 
     var titleEl = document.createElement("h3");
     titleEl.textContent = currentQuestion.title;
     questionsSection.append(titleEl);
-   // console.log(questions[index].choices);
+   
 
     currentQuestion.choices.forEach(function(choice, i) {
-        console.log(choice, i);
-        var choicesEl = document.createElement("button");
-        choicesEl.textContent = choice;
+    var choicesEl = document.createElement("button");
+    choicesEl.setAttribute("class", "btn");
+    // choicesEl.textContent = choice;
+    choicesEl.setAttribute("data-answer", currentQuestion.choices[i]);
 
-        questionsSection.appendChild(choicesEl)
+
+    //determine if the button as the correct answer
+    //if does, set attribute (data-correct) yes or no
+    //when button is 
+    choicesEl.textContent = currentQuestion.choices[i];
+  
+    
+    questionsSection.appendChild(choicesEl)
+    console.log(choice, i);
+    
+    
+    if (userAnswer){
+        var correct = questions[index].answer
+        console.log(correct)
+        var userAnswer = e.target.getAttribute("data-answer");
+        console.log(userAnswer);
+        index++;
+        if (userAnswer === correct){
+            console.log("correct Answer");
+        } else {
+            console.log("incorrect again!!!!")
+        }
+    }
+    
     })
+    
 }
   
     
-function handleClick(e){
+function startQuiz(e){
     e.preventDefault();
-    startTime();
-    if( e.target.matches("button") ){
+    
     hTag.style.display = "none";
     para.style.display = "none";
     startButton.style.display = "none";
+    startTime();
     } 
-    
+
+function answerClick(e){
+    // e.preventDefault();
+    // if( e.target.matches("button") ){
+    //     console.log("Correct");
+    // } else {
+    //     console.log("incorrect");
+    // }
 }
 
-startButton.addEventListener("click", handleClick); 
+ulTag.addEventListener("click", userAnswer);
 
-
+startButton.addEventListener("click", startQuiz); 
