@@ -89,6 +89,6 @@ function answerClick(e){
     // }
 }
 
-ulTag.addEventListener("click", userAnswer);
+ulTag.addEventListener("click", answerClick);
 
 startButton.addEventListener("click", startQuiz); 
