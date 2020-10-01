@@ -8,11 +8,12 @@ var questionsSection = document.querySelector("#questionSection");
 var choices = document.querySelector("choices");
 var score = 0;
 var index = 0;
-var timeLeft = 120;
+var timeLeft = 60;
 var myTimer;
 var finalScore = document.querySelector("#score");
 var scoreCounter = localStorage.getItem("score");
 localStorage.setItem("Score", score);
+
 
 
 //Questions and Answers Array
@@ -55,45 +56,41 @@ function loadQuestion(){
     // var titleEl = document.createElement("h2");
     questionsSection.textContent = currentQuestion.title;
     // questionsSection.append(titleEl);
-    loadChoices(index);
-    
+    loadChoices(index); 
 }
-
-// answers function 
 
 // Load questions from array function 
 function loadChoices(index){
     // show choices loop
     for (var i = 0; i < questions[index].choices.length; i++){
     
-    if (ulTag.childElementCount < questions[index].choices.length) {
+        if (ulTag.childElementCount < questions[index].choices.length) {
 
 
-    // make answer buttons
-    var choicesEl = document.createElement("button");
+        // make the answers a button
+        var choicesEl = document.createElement("button");
 
-    // give button a class of btn
-    choicesEl.setAttribute("class", "btn" + [i]);
-    choicesEl.textContent = questions[index].choices[i];
+        // give button a class of btn
+        choicesEl.setAttribute("class", "btn" + [i]);
+        choicesEl.textContent = questions[index].choices[i];
 
-    // give data answer attribute
-    choicesEl.setAttribute("data-answer", questions[i].answer);
+        // give data answer attribute
+        choicesEl.setAttribute("data-answer", questions[i].answer);
         
-    //Show choices
-    ulTag.appendChild(choicesEl);
-    console.log(choicesEl);
-
-    //determine if the button as the correct answer
-    //if does, set attribute (data-correct) yes or no
-    //when button is 
-    } else {
+        //Show choices
+        ulTag.appendChild(choicesEl);
+        console.log(choicesEl);
+        
+        }   else {
+        
         var newChoicesEl = document.querySelector(".btn" + [i]);
         newChoicesEl.textContent = questions[index].choices[i];
-    }
-    if(index === 4){
+            }
+
+        if(index === 4){
         endQuiz();
+            }
     }
-}
 }
 
 // Start Quiz function 
@@ -112,37 +109,40 @@ function startQuiz(e){
 // user clicks an answer function
 function answerClick(e){
     e.preventDefault();
-   var userAnswer = e.target.getAttribute("data-answer");
-
+    //get the defined data answer
+    var userAnswer = e.target.getAttribute("data-answer");
+    //If the defined data-answer is equal to the answer in the array
     if (userAnswer == questions[index].answer){
-        // create message of correct
-        msg = "That's Right!!!"
         // increase score
         score++;
         finalScore.textContent = scoreCounter;
+        //Add score to local store
         localStorage.setItem("Score", score);
     } else {
-        // display message of incorrect
-        msg = "Sorry, That is Incorrect"
-        //decrease counter
+        //decrease counter by 5 seconds if answer is wrong
         timeLeft -= 5;
     }
+    //Anytime the user answers whether right or wrong
     if (userAnswer){
+        //Move to the next question and answers
         index++;
         loadQuestion();
-    }
-    
+    }   
 }
 
+// End the Quiz Function
+function endQuiz(e){
 
-function endQuiz(){
+    //stop the timer
     clearInterval(myTimer);
+
+    // Hide answer buttons
     ulTag.style.display = "none";
+
+    // Hide Timer
     timeRemain.style.display = "none";
     finalScore.textContent = ("Your score is " + score);
-
 }
-
 
 // Event listener on ul Tag
 ulTag.addEventListener("click", answerClick);
