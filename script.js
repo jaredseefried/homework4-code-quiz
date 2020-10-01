@@ -21,13 +21,13 @@ var questions = [
     {title: "Inside which HTML element do we put the JavaScript?",
     choices: ['<script>', '<js>', '<scripting>', '<javascript>'] ,
     answer: '<script>'},
-    {title: "what do we assign a value to?",
+    {title: "What do we assign a value to?",
     choices: ['loop', 'variable', 'function', 'object'] ,
     answer: 'variable'},
-    {title: "what symbol(s) is used to comment javascript?",
+    {title: "What symbol(s) is used to comment javascript?",
     choices: ['*/', '{ }', '//', 'comment -m'] ,
     answer: '//'},
-    {title: "what does i stand for?",
+    {title: "What does i stand for?",
     choices: ['iPhone', 'india', 'indent', 'index'] ,
     answer: 'index'},
     {title: "End of Quiz",
@@ -80,7 +80,7 @@ function loadChoices(index){
         //Show choices
         ulTag.appendChild(choicesEl);
         console.log(choicesEl);
-        
+
         }   else {
         
         var newChoicesEl = document.querySelector(".btn" + [i]);
