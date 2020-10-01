@@ -74,11 +74,11 @@ function loadChoices(index){
     choicesEl.textContent = questions[index].choices[i];
 
     // give data answer attribute
-    choicesEl.setAttribute("data-answer", questions[index].answer);
-
+    choicesEl.setAttribute("data-answer", questions[i].answer);
+        
     //Show choices
     ulTag.appendChild(choicesEl);
-    console.log();
+    console.log(choicesEl);
 
     //determine if the button as the correct answer
     //if does, set attribute (data-correct) yes or no
@@ -115,7 +115,7 @@ function answerClick(e){
         // create message of correct
         msg = "That's Right!!!"
         // increase score
-        score++
+        score++;
         console.log("added point to score");
     } else {
         // display message of incorrect
