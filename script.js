@@ -14,8 +14,6 @@ var finalScore = document.querySelector("#score");
 var scoreCounter = localStorage.getItem("score");
 localStorage.setItem("Score", score);
 
-
-
 //Questions and Answers Array
 var questions = [
     {title: "Inside which HTML element do we put the JavaScript?",
@@ -141,7 +139,7 @@ function endQuiz(e){
 
     // Hide Timer
     timeRemain.style.display = "none";
-    finalScore.textContent = ("Your score is " + score);
+    finalScore.textContent = ("You scored " + score + " out of 4");
 }
 
 // Event listener on ul Tag
