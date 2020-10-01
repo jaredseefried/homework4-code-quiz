@@ -14,13 +14,38 @@ header{
     width: 30%;
     height: auto;
     /* color: white; */
-    background-color: red;
+    background-color:#97A675;
+    color:white;
     font-size: 24px;
+    border-color: white;
+   
     }
 
-.btn {
+.btn0, .btn1, .btn2, .btn3 {
     display: block;
     margin: 18px 0px;
     width:20%;
-    background-color: teal;
+    background-color: #97A675;
+    color:white;
+    font-size:20px;
+    border-color: white;
     }
+
+#timer{
+    font-size: 15px;
+    background-color: #EFF2D8;
+    padding: 10px 0px 10px 37px;
+}
+
+header{
+    background-color: #00738c;
+    color: white;
+}
+
+#questionSection{
+    padding: 17px 0px;
+}
+
+#timer{
+    display: none;
+}

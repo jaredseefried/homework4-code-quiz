@@ -8,28 +8,32 @@ var questionsSection = document.querySelector("#questionSection");
 var choices = document.querySelector("choices");
 var score = 0;
 var index = 0;
-var timeLeft = 10;
-var myTimer
+var timeLeft = 120;
+var myTimer;
+var finalScore = document.querySelector("#score");
 
 //Questions and Answers Array
 var questions = [
-    {title: "what is up?",
-    choices: ['one', 'two', 'three', 'four'] ,
-    answer: 'one'},
-    {title: "what is down?",
-    choices: ['five', 'six', 'seven', 'eight'] ,
-    answer: 'six'},
-    {title: "what is left?",
-    choices: ['nine', 'ten', 'eleven', 'twelve'] ,
-    answer: 'eleven'},
-    {title: "what is right?",
-    choices: ['thirteen', 'fourteen', 'fiveteen', 'sixteen'] ,
-    answer: 'sixteen'}
+    {title: "Inside which HTML element do we put the JavaScript?",
+    choices: ['<script>', '<js>', '<scripting>', '<javascript>'] ,
+    answer: '<script>'},
+    {title: "what do we assign a value to?",
+    choices: ['loop', 'variable', 'function', 'object'] ,
+    answer: 'variable'},
+    {title: "what symbol(s) is used to comment javascript?",
+    choices: ['*/', '{ }', '//', 'comment -m'] ,
+    answer: '//'},
+    {title: "what does i stand for?",
+    choices: ['iPhone', 'india', 'indent', 'index'] ,
+    answer: 'index'},
+    {title: "End of Quiz",
+    choices: "none",
+    answer: "none"}
 ]
 
 //Countdown function
 function startTime(){
-    
+    timeRemain.style.display = "block";
     myTimer = setInterval(function() {
         timeLeft--;
             timeRemain.textContent = timeLeft + " seconds remaining.";
@@ -49,6 +53,7 @@ function loadQuestion(){
     questionsSection.textContent = currentQuestion.title;
     // questionsSection.append(titleEl);
     loadChoices(index);
+    
 }
 
 // answers function 
@@ -82,6 +87,9 @@ function loadChoices(index){
         var newChoicesEl = document.querySelector(".btn" + [i]);
         newChoicesEl.textContent = questions[index].choices[i];
     }
+    if(index === 4){
+        endQuiz();
+    }
 }
 }
 
@@ -102,15 +110,18 @@ function startQuiz(e){
 function answerClick(e){
     e.preventDefault();
    var userAnswer = e.target.getAttribute("data-answer");
-//    console.log(userAnswer);
-    if (userAnswer === questions[index].answer){
-        // create message of correcxt
-        // increase score
 
+    if (userAnswer == questions[index].answer){
+        // create message of correct
+        msg = "That's Right!!!"
+        // increase score
+        score++
+        console.log("added point to score");
     } else {
         // display message of incorrect
-        //descrease counter
-
+        msg = "Sorry, That is Incorrect"
+        //decrease counter
+        timeLeft -= 5;
     }
     if (userAnswer){
         index++;
@@ -118,6 +129,17 @@ function answerClick(e){
     }
     
 }
+
+
+function endQuiz(){
+    clearInterval(myTimer);
+    ulTag.style.display = "none";
+    timeRemain.style.display = "none";
+    finalScore.textContent = ("Your score is " + score);
+
+}
+
+
 
 // Event listener on ul Tag
 ulTag.addEventListener("click", answerClick);
