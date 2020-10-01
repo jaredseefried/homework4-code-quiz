@@ -11,6 +11,9 @@ var index = 0;
 var timeLeft = 120;
 var myTimer;
 var finalScore = document.querySelector("#score");
+var scoreCounter = localStorage.getItem("score");
+localStorage.setItem("Score", score);
+
 
 //Questions and Answers Array
 var questions = [
@@ -116,7 +119,8 @@ function answerClick(e){
         msg = "That's Right!!!"
         // increase score
         score++;
-        console.log("added point to score");
+        finalScore.textContent = scoreCounter;
+        localStorage.setItem("Score", score);
     } else {
         // display message of incorrect
         msg = "Sorry, That is Incorrect"
@@ -138,7 +142,6 @@ function endQuiz(){
     finalScore.textContent = ("Your score is " + score);
 
 }
-
 
 
 // Event listener on ul Tag
